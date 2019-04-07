@@ -31,6 +31,7 @@ function watch() {
   gulp.watch('./src/js/scripts/**/*.js', script);
   gulp.watch('./src/js/*.js').on('change', browserSync.reload);
   gulp.watch('./*.php').on('change', browserSync.reload);
+  gulp.watch('./includes/*.php').on('change', browserSync.reload);
   gulp.watch('./*.html').on('change', browserSync.reload);
 }
 

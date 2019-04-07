@@ -1,9 +1,7 @@
 <!doctype html>
 <?php
-  @include_once './includes/dba.php';
-
-  $json = CallAPI('GET', "http://localhost/schedule_system_API/api/post/read.php", false);
-  $resp = json_decode($json);
+@include_once './includes/calls.php';
+@include_once './includes/utility.php';
 
 ?>
 
@@ -21,12 +19,24 @@
 
 <body>
 HELOOOOOOWWWW!! aaaa bbbbb
-<h1>
+
+  <div class="calendar">
   <?php
-  foreach ($resp as $myclass) {
-    $class = (array) $myclass;
-    var_dump($class["id"]);
-  }?>
-</h1>
+  $resp = processclasses();
+  foreach ($resp as $key => $myclass) {
+
+  $day = findWeekday($myclass->date);
+  $time = convertTime($myclass->time);
+  ?>
+  <div class="my_class day<?php echo $day;?>">
+    <span class="class_name"><?php echo $myclass->course ?></span>
+    <span class="class_instructor"><?php echo $myclass->instructor ?></span>
+    <span class="class_time"><?php echo $time ?></span>
+    <span class="class_duration"><?php echo $myclass->length ?></span>
+  </div>
+  <?php
+  }
+  ?>
+  </div>
 </body>
 </html>
