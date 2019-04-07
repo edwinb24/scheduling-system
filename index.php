@@ -1,4 +1,11 @@
 <!doctype html>
+<?php
+  @include_once './includes/dba.php';
+
+  $json = CallAPI('GET', "http://localhost/schedule_system_API/api/post/read.php", false);
+  $resp = json_decode($json);
+
+?>
 
 <html lang="en">
 <head>
@@ -14,5 +21,12 @@
 
 <body>
 HELOOOOOOWWWW!! aaaa bbbbb
+<h1>
+  <?php
+  foreach ($resp as $myclass) {
+    $class = (array) $myclass;
+    var_dump($class["id"]);
+  }?>
+</h1>
 </body>
 </html>
