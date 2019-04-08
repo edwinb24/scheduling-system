@@ -22,17 +22,20 @@ HELOOOOOOWWWW!! aaaa bbbbb
 
   <div class="calendar">
   <?php
-  $resp = processclasses();
-  foreach ($resp as $key => $myclass) {
+  $resp = processClasses();
+  $all_week_classes = organizeClassesByDay($resp);
 
-  $day = findWeekday($myclass->date);
-  $time = convertTime($myclass->time);
+  for ($i=0; $i <7 ; $i++) {
   ?>
-  <div class="my_class day<?php echo $day;?>">
-    <span class="class_name"><?php echo $myclass->course ?></span>
-    <span class="class_instructor"><?php echo $myclass->instructor ?></span>
-    <span class="class_time"><?php echo $time ?></span>
-    <span class="class_duration"><?php echo $myclass->length ?></span>
+  <div class="my_class day<?php echo $i;?>">
+  <?php foreach ($all_week_classes[$i] as $class_session): ?>
+    <div class="class_session" id="<?echo $class_session->id ?>">
+      <span class="class_name"><?php echo $class_session->course ?></span>
+      <span class="class_instructor"><?php echo $class_session->instructor ?></span>
+      <span class="class_time"><?php echo $class_session->time ?></span>
+      <span class="class_duration"><?php echo $class_session->length ?></span>
+    </div>
+  <?php endforeach; ?>
   </div>
   <?php
   }
