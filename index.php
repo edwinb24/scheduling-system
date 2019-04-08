@@ -18,7 +18,6 @@
 </head>
 
 <body>
-HELOOOOOOWWWW!! aaaa bbbbb
 
   <div class="calendar">
   <?php
